@@ -104,8 +104,8 @@ var config = {
          */
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
-            title: 'react ui组件',
-            addLinkCss: ['/www/styles/iconfont.css'],
+            title: 'vue ui组件',
+            addLinkCss: ['/styles/iview.css'],
             template: './template/index.ejs',
             hash: true,    //为静态资源生成hash值
         })
