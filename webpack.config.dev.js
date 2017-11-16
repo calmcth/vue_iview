@@ -47,20 +47,10 @@ var config = {
                 loader: 'babel-loader'
             },
             {
-                test: /iview\/.*?js$/,
-                loader: 'babel-loader'
-            },
-            {
                 test: /\.vue$/,
                 use: [
                     {
                         loader: 'vue-loader',
-                    },
-                    {
-                        loader: 'iview-loader',
-                        options: {
-                            prefix: false
-                        }
                     }
                 ]
             },
