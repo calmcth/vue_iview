@@ -1,4 +1,4 @@
-# webpack2-typescript-vue-vuex
+# webpack2-typescript-vue-vuex-iview
 
 ## 全局需要安装的环境
 
@@ -31,5 +31,9 @@ npm run build
  npm run dev 
  
 ```
-
-
+## 用户名--密码
+```
+ 用户名：admin
+ 密码：admin
+ 
+```
