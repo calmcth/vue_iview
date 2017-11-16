@@ -1,0 +1,9 @@
+const HOME_COUNT = 'DONE_COUNT'
+const HOME_ACTION = 'HOME_ACTION'
+const HOME_DONE = 'TOGGLE_DONE'
+
+export{
+    HOME_COUNT,
+    HOME_ACTION,
+    HOME_DONE
+}
