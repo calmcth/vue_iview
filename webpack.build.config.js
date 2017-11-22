@@ -38,7 +38,7 @@ var config = {
      **/
     output: {
         path: path.resolve(__dirname, 'www'),
-        chunkFilename: '[name].js',
+        chunkFilename: '[name].[chunkhash:5].chunk.js',
         filename: '[name].js',
         publicPath: '/'
     },
@@ -71,7 +71,6 @@ var config = {
         extensions: [".js", ".ts", ".vue"], //当requrie的模块找不到时，添加这些后缀
         //设置别名
         alias: {
-            "components": path.resolve(__dirname, 'src/components/'),
             "utilities": path.resolve(__dirname, 'src/utilities/')
         }
     },

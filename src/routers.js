@@ -12,12 +12,12 @@ const router = new VueRouter({
             name:'home',
             component: Modeules.LayoutController,
             children:[
-                {path:"/tableList",name:'tableList',component:Modeules.TableListController},
-                {path:'/userInfo',name:'userInfo',component:Modeules.UserInfoController}
+                {path:"/tableList", name:'tableList', component: Modeules.TableListController},
+                {path:'/userInfo', name:'userInfo', component: Modeules.UserInfoController}
             ]
         },
         {
-            path: '/login', name:'login',component: Modeules.LoginController,
+            path: '/login', name:'login', component: Modeules.LoginController,
         }
     ]
 });

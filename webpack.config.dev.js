@@ -77,7 +77,6 @@ var config = {
         extensions: [".js",".vue"], //当requrie的模块找不到时，添加这些后缀
          //设置别名
         alias:{
-            "components": path.resolve(__dirname, 'src/components/'),
              "utilities": path.resolve(__dirname,'src/utilities/')
         }
     },
