@@ -84,7 +84,6 @@ var config = {
         "react-dom": "ReactDOM"
     },*/
     plugins: [
-        new webpack.optimize.UglifyJsPlugin(),
         new webpack.LoaderOptionsPlugin({
             minimize: true,
             debug: true

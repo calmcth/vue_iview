@@ -1,7 +1,3 @@
 {
-  "presets": [
-    ["env", { "modules": false }]
-  ],
-  "comments": false,
-  "plugins": ["transform-runtime", "transform-object-rest-spread","syntax-dynamic-import"]
+  "presets": ["es2015", "stage-2"]
 }
