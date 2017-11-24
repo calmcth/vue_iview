@@ -1,4 +1,4 @@
-# webpack3-typescript-vue-vuex-iview +国际化
+# webpack3-typescript-vue-vuex-iview+国际化
 
 ## 全局需要安装的环境
 

@@ -1,4 +1,10 @@
 module.exports ={
+    userInfo:{
+        name:"name",
+        Email:"Email",
+        city:"city",
+        date:"birthDate"
+    },
     message: {
         title: 'Sport Brands'
     },

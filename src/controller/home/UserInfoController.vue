@@ -1,28 +1,25 @@
 <template>
     <div>
-        <p>{{ $t("message.title") }} </p>
+        <p>{{ $t("message.title") | text }} </p>
+        <p>{{ title }} </p>
         <i-form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
-            <FormItem label="姓名" prop="name">
-                <Input v-model="formValidate.name" placeholder="Enter your name"></Input>
+            <FormItem :label="$t('userInfo.name')" prop="name">
+                <Input v-model="formValidate.name" placeholder="Enter your name"/>
             </FormItem>
-            <FormItem label="邮箱" prop="mail">
-                <Input v-model="formValidate.mail" placeholder="Enter your e-mail"></Input>
+            <FormItem :label="$t('userInfo.Email')" prop="mail">
+                <Input v-model="formValidate.mail" placeholder="Enter your e-mail"/>
             </FormItem>
-            <FormItem label="居住城市" prop="city">
+            <FormItem :label="$t('userInfo.city')" prop="city">
                 <Select v-model="formValidate.city" placeholder="Select your city">
                     <Option value="beijing">New York</Option>
                     <Option value="shanghai">London</Option>
                     <Option value="shenzhen">Sydney</Option>
                 </Select>
             </FormItem>
-            <FormItem label="出生日期">
-                <Row>
-                    <Col span="24">
-                    <FormItem prop="date">
-                        <DatePicker type="date" placeholder="Select date" v-model="formValidate.date"></DatePicker>
-                    </FormItem>
-                    </Col>
-                </Row>
+            <FormItem v-bind:label="$t('userInfo.date')">
+                <FormItem prop="date">
+                    <DatePicker type="date" placeholder="Select date" v-model="formValidate.date"></DatePicker>
+                </FormItem>
             </FormItem>
             <FormItem label="性别" prop="sex">
                 <RadioGroup v-model="formValidate.sex">
@@ -39,7 +36,7 @@
                 </CheckboxGroup>
             </FormItem>
             <FormItem label="签名" prop="desc">
-                <Input v-model="formValidate.desc" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Enter something..."></Input>
+                <Input v-model="formValidate.desc" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Enter something..."/>
             </FormItem>
             <FormItem>
                 <Button type="primary" @click="handleSubmit('formValidate')">提交</Button>
@@ -104,6 +101,11 @@
                     desc: ''
                 };
                 this.$refs[name].resetFields();
+            }
+        },
+        computed:{
+            title:function() {
+                return this.$t('userInfo.date')+"不错错";
             }
         },
         created() {

@@ -1,4 +1,10 @@
 module.exports ={
+    userInfo:{
+       name:"姓名",
+       Email:"邮箱",
+       city:"城市",
+       date:"出生日期"
+    },
     message: {
         title: '运动品牌'
     },
