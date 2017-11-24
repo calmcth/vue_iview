@@ -46,12 +46,16 @@ var config = {
         rules: [
             {
                 test: /\.(js)?$/,
-                exclude: /node_modules/,
-                loader: 'babel-loader'
+                loader: 'babel-loader',
+                include: [pathToSrc]
             },
             {
                 test: /\.vue$/,
-                loader: 'vue-loader'
+                use: [
+                    {
+                        loader: 'vue-loader',
+                    }
+                ]
             },
             {
                 test: /\.(less|css)$/,
@@ -80,6 +84,7 @@ var config = {
         "react-dom": "ReactDOM"
     },*/
     plugins: [
+        new webpack.optimize.UglifyJsPlugin(),
         new webpack.LoaderOptionsPlugin({
             minimize: true,
             debug: true
@@ -92,7 +97,7 @@ var config = {
         }),
         new ExtractTextPlugin("app.css"),
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': '"production"',
+            'process.env.NODE_ENV': JSON.stringify('production')
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: "common",
@@ -105,7 +110,7 @@ var config = {
         new HtmlWebpackPlugin({
             title: 'vue ui组件',
             addLinkCss: ['/styles/iview.css'],
-            template: './template/index.ejs',
+            template: './template/index.ejs',//本地模板文件的位置，支持加载器(如handlebars、ejs、undersore、html等)
             hash: true,    //为静态资源生成hash值
         })
     ]

@@ -31,6 +31,7 @@
                             <Icon type="arrow-down-b"></Icon>
                         </a>
                         <DropdownMenu slot="list">
+                            <DropdownItem name="CnChnageEn">中英切换</DropdownItem>
                             <DropdownItem name="quit">退出</DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
@@ -48,6 +49,7 @@
     </div>
 </template>
 <script>
+    import Vue from 'vue';
     import {
         mapGetters,
         mapState,
@@ -90,7 +92,18 @@
             },
             quit(name){
                 switch (name){
-                    case "quit":LocalStorage.clear();Tool.replace({path:'/login'});break;
+                    case "quit":
+                        LocalStorage.clear();Tool.replace({path:'/login'});
+                        break;
+                    case "CnChnageEn":
+                        if(this.$store.state.locale==="cn"){
+                            this.$store.dispatch('changeLanguage','en');
+                        }else {
+                            this.$store.dispatch('changeLanguage','cn');
+                        }
+                        //this.$i18n.locale=this.$store.state.locale;
+                        Vue.config.lang = this.$store.state.locale;
+                        break;
                     default:break;
                 }
             }

@@ -43,8 +43,8 @@ var config = {
         rules: [
             {
                 test: /\.(js)?$/,
-                exclude: /node_modules/,
-                loader: 'babel-loader'
+                loader: 'babel-loader',
+                include: [path.resolve(__dirname, 'src')]
             },
             {
                 test: /\.vue$/,
@@ -57,8 +57,8 @@ var config = {
             {
                 test: /\.(less|css)$/,
                 use: [
-                    "style-loader",
                     "css-loader",
+                    "style-loader",
                     "less-loader"
                 ]
             },
@@ -81,6 +81,7 @@ var config = {
         }
     },
     plugins: [
+        new webpack.optimize.UglifyJsPlugin(),
         new webpack.LoaderOptionsPlugin({
             minimize: true,
             debug: true

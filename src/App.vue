@@ -7,6 +7,7 @@
 </template>
 
 <script type="text/babel">
+    import Vue from 'vue';
   export default {
     name:'App',
     data() {
@@ -15,27 +16,20 @@
         fullHeight: document.documentElement.clientHeight
       }
     },
-    watch: {
-      '$route' (to, from) {
-        let transition = 'null';
-        const toDepth = to.path.split('/').length;
-        const fromDepth = from.path.split('/').length;
-        transition = toDepth < fromDepth ? 'slide-right' : 'slide-left';
-        this.transitionName = transition;
-      }
-    },
     methods: {
         handleResize (event) {
             this.fullHeight = document.documentElement.clientHeight
         }
     },
-    ready: function () {
-        window.addEventListener('resize', this.handleResize);
-    },
-    beforeDestroy: function () {
-        window.removeEventListener('resize', this.handleResize);
-    },
     mounted() {
+    },
+    created(){
+        if(this.$store.state.locale!=="cn"){
+            this.$store.dispatch('changeLanguage','cn');
+        }
+        Vue.config.lang = this.$store.state.locale;
+        //this.$i18n.locale=this.$store.state.locale;
+        //window.addEventListener('resize', this.handleResize);
     }
   }
 </script>

@@ -5,9 +5,9 @@ import axios from 'axios';
  * 
  * @param str MD5
  */
-let MD5Encrypt = (str) => {
+/*let MD5Encrypt = (str) => {
     return CryptoJS.MD5(str);
-};
+};*/
 /*--服务类AJAX-Promise--*/
 class Promise {
     constructor() {
@@ -41,14 +41,12 @@ class Promise {
 
     static res(type, service_id, param = {},plains = false){
 
-        let plain = plains;
-        let encryptKey = applicationConfig.encryptKey;
         let ApiPath = applicationConfig.apiPath;
         let contentBody = {
             service_id : service_id,
             app_type   : applicationConfig.app_type,
             ver_name   : applicationConfig.ver_name,
-            sign : MD5Encrypt(JSON.stringify(param)).toString(),
+            sign :JSON.stringify(param),
             content: param
         };
         return axios({

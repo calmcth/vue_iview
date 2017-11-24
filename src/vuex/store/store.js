@@ -6,10 +6,11 @@ Vue.use(Vuex);
 import PromoteMutation from '../mutations/PromoteMutation';
 import AppMutation from '../mutations/AppMutation';*/
 const state = {
-  token: null,
-  userName:'admin',
-  password:'admin',
-  msg:''
+    token: null,
+    locale:'cn',
+    userName:'admin',
+    password:'admin',
+    msg:''
 };
 const actions = {
     updateUser ({ commit, state },params) {
@@ -26,7 +27,11 @@ const actions = {
             }
         }
         commit(`SET_MSG`, msg);
+    },
+    changeLanguage({ commit, state },params) {
+        commit(`SET_CHANGELANGUAGE`, params);
     }
+
 };
 export default new Vuex.Store({
   state,
@@ -39,6 +44,9 @@ export default new Vuex.Store({
       },
       [`SET_MSG`](state, data) {
           state.msg = data;
+      },
+      [`SET_CHANGELANGUAGE`](state, data) {
+          state.locale = data;
       }
   },
   modules:{
