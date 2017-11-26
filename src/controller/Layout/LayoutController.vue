@@ -6,15 +6,15 @@
     <div class="layout" :class="{'layout-hide-text': spanLeft < 4}">
         <Row type="flex" style="height: 100%">
             <Col :span="spanLeft" class="layout-menu-left">
-                <Menu active-name="tableList" theme="dark" width="auto" @on-select="onSelect">
+                <Menu v-bind:active-name="activeName" theme="dark" width="auto" @on-select="onSelect">
                     <div class="layout-logo-left cdgl">
                         菜单管理
                     </div>
-                    <MenuItem name="tableList">
+                    <MenuItem name="/tableList">
                         <Icon type="ios-navigate" :size="iconSize"></Icon>
                         <span class="layout-text">列表</span>
                     </MenuItem>
-                    <MenuItem name="userInfo">
+                    <MenuItem name="/userInfo">
                         <Icon type="ios-navigate" :size="iconSize"></Icon>
                         <span class="layout-text">个人信息</span>
                     </MenuItem>
@@ -60,8 +60,14 @@
     export default {
         data () {
             return {
+                activeName:this.$route.path,
                 spanLeft: 4,
                 spanRight: 20
+            }
+        },
+        watch:{
+            $route(){
+                this.activeName=this.$route.path
             }
         },
         computed: {
@@ -85,9 +91,8 @@
                 }
             },
             onSelect(name){
-                console.log(name);
                 Tool.push({
-                    path:"/"+name
+                    path:name
                 })
             },
             quit(name){
@@ -107,6 +112,9 @@
                     default:break;
                 }
             }
+        },
+        created() {
+            console.log()
         }
     }
 </script>

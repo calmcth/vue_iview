@@ -8,13 +8,10 @@ const router = new VueRouter({
     //mode: 'history',
     routes: [
         {
-            path: '/home',
-            name:'home',
+            path: '/layout',
+            name:'layout',
             component: Modeules.LayoutController,
-            children:[
-                {path:"/tableList", name:'tableList', component: Modeules.TableListController},
-                {path:'/userInfo', name:'userInfo', component: Modeules.UserInfoController}
-            ]
+            children:Modeules.ControllerRouter
         },
         {
             path: '/login', name:'login', component: Modeules.LoginController,
