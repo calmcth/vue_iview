@@ -21,8 +21,6 @@ const router = new VueRouter({
         }
     ]
 });
-
-let auth = false;
 /**跳转拦截**/
 router.beforeEach((to, from, next) => {
     if(to.path!=='/login' && LocalStorage.get("SimUserInfo_")===null){

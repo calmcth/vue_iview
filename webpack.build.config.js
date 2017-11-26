@@ -29,7 +29,8 @@ var config = {
             "vue",
             "vuex",
             "axios",
-            "vue-router"
+            "vue-router",
+            "iview"
         ]
     },
     /***
