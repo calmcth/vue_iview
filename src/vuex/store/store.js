@@ -1,10 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import {LocalStorage} from '../../utilities/index';
+import vuexModules from '../modules/index';
 Vue.use(Vuex);
-/*import HomeMutation from '../mutations/HomeMutation';
-import PromoteMutation from '../mutations/PromoteMutation';
-import AppMutation from '../mutations/AppMutation';*/
+
 const state = {
     token: null,
     locale:'cn',
@@ -49,7 +47,5 @@ export default new Vuex.Store({
           state.locale = data;
       }
   },
-  modules:{
-
-  }
+  modules:vuexModules
 })

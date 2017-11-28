@@ -10,10 +10,12 @@ var path = require('path');
  * @type {{index: string, details: string}|exports|module.exports}
  */
 var webpack = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
+var CleanPlugin = require('clean-webpack-plugin');
 //提取公用CSS
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+
 var node_modules = path.resolve(__dirname, 'node_modules');
 var pathToSrc = path.resolve(__dirname, 'src');
 var pathToBuild = path.resolve(__dirname, 'www');
@@ -68,7 +70,7 @@ var config = {
             },
             { test: /\.(png|jpg)$/,
                 loader: 'url-loader',
-                query:{limit:'100',name:'html/ds/images/[name].[ext]'}
+                query:{limit:'100',name:'static/image/[name].[ext]'}
             }
         ]
     },
@@ -85,6 +87,10 @@ var config = {
         "react-dom": "ReactDOM"
     },*/
     plugins: [
+        new CleanPlugin(['www']),
+        new CopyWebpackPlugin([
+            {from:__dirname+'/static',to:__dirname+"/www/static"}
+        ]),
         new webpack.LoaderOptionsPlugin({
             minimize: true,
             debug: true
@@ -103,14 +109,10 @@ var config = {
             name: "common",
             filename: "common.js"
         }),
-        /**
-         * 组件热刷新
-         */
-        new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
             title: 'vue ui组件',
-            addLinkCss: ['/styles/iview.css'],
-            template: './template/index.ejs',//本地模板文件的位置，支持加载器(如handlebars、ejs、undersore、html等)
+            addLinkCss: ['/static/styles/iview.css'],
+            template: './template/index.build.ejs',//本地模板文件的位置，支持加载器(如handlebars、ejs、undersore、html等)
             hash: true,    //为静态资源生成hash值
         })
     ]

@@ -1,0 +1,13 @@
+[
+  {
+    "path":"/tableList",
+    "name":"列表",
+    "permission": ["edit","add"]
+  },
+  {
+    "name":"个人配置",
+    "child":[
+      {"path":"/userInfo","name":"个人信息"}
+    ]
+  }
+]

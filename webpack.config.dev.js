@@ -12,22 +12,22 @@ var path = require('path');
 var webpack = require('webpack');
 //提取公用CSS
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 var node_modules = path.resolve(__dirname, 'node_modules');
 var config = {
     //pathToBuild: pathToBuild,
     devtool: "source-map",
     //入口文件配置
     entry: {
-        app: [
-            path.resolve(__dirname, 'src/app.js')
-        ],
         common: [
             "vue",
             "vuex",
             "axios",
             "vue-router",
             "iview"
+        ],
+        app: [
+            path.resolve(__dirname, 'src/app.js')
         ]
     },
     /***
@@ -82,11 +82,14 @@ var config = {
         }
     },
     plugins: [
-        //new webpack.optimize.UglifyJsPlugin(),
+        new CopyWebpackPlugin([
+            {from:__dirname+'/static',to:__dirname+"/www/static"}
+        ]),
         new webpack.LoaderOptionsPlugin({
             minimize: true,
             debug: true
         }),
+        new webpack.NoEmitOnErrorsPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
             name: "common",
             filename: "common.js"
@@ -97,9 +100,18 @@ var config = {
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
             title: 'vue ui组件',
-            addLinkCss: ['/styles/iview.css'],
+            addLinkCss: ['/static/styles/iview.css'],
             template: './template/index.ejs',
             hash: true,    //为静态资源生成hash值
+            inject: true,
+            minify: {
+                removeComments: true,
+                collapseWhitespace: true,
+                removeAttributeQuotes: true
+            },
+            chunks: ['common', 'app'],
+            // necessary to consistently work with multiple chunks via CommonsChunkPlugin
+            chunksSortMode: 'dependency'
         })
     ]
 };

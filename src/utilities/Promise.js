@@ -1,6 +1,4 @@
 import axios from 'axios';
-
-
 /**
  * 
  * @param str MD5
@@ -20,7 +18,6 @@ class Promise {
      * @param param 接口接收的参数 {}
      */
      static resource(type, url, param = {}) {
-
         let ApiPath = applicationConfig.apiPath;
         let BaseUrl = `${ApiPath}${url}`;
         return axios({
@@ -29,13 +26,10 @@ class Promise {
             timeout: 3000,
             params: param
         }).then((response) => {
-
             return response.data;
         }, () => {
-
         }).catch(function (error) {
             console.log(error);
-
         })
     }
 

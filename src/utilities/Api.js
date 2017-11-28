@@ -7,10 +7,9 @@ const BaseApi = {
 	/**
 	 * 查询接口
 	 */
-   queryContent:()=>{
-    return promise.resource('get', 'api/fullconfig',
-            {querystring1:'1'});
-    }
+   queryNavList:()=>{
+        return promise.resource('get', '/static/config/navList.json');
+   }
 };
 
 export default BaseApi;

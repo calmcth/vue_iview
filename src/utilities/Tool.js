@@ -1,4 +1,4 @@
-import router from "../routers";
+import router from "../router/index";
 /*--服务类AJAX--*/
 function likeArray(obj) { return typeof obj.length == 'number' }
 /*-工具类-*/
