@@ -105,4 +105,12 @@ export default class Tool {
     static getQueryString(Paras){
         return this.getUrlParams()[Paras]
     }
+
+    static  oneOf = function (ele, targetArr) {
+        if (targetArr.indexOf(ele) >= 0) {
+            return true;
+        } else {
+            return false;
+        }
+    };
 }

@@ -1,5 +1,6 @@
 import permission from './permission'
-
+import app from './app';
 export default {
-    permission: permission
+    permission: permission,
+    app:app
 }

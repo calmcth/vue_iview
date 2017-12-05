@@ -66,7 +66,6 @@ export default class LocalStorage {
       */
     static update(key, value, expired) {
         let json = JSON.parse(localStorage.getItem(key));
-        console.log(json)
         if (json != null) {
             let _expired = this.getExp(expired, key);
             let obj = {

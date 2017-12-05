@@ -80,7 +80,7 @@
                                 userName:this.$store.state.userName,
                             });
                         }
-                        Tool.push({path:"/tableList"})
+                        Tool.push({path:"/"})
                     } else {
                         this.$Message.error('登录失败!');
                     }

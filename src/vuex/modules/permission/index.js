@@ -19,6 +19,11 @@ export default {
             return new Promise((resolve, reject) =>{
                 Api.queryNavList().then((res) => {
                     // 存储权限菜单列表
+                    res.forEach((item)=>{
+                        if(item.icon===undefined || item.icon===''){
+                            item.icon="android-document";
+                        }
+                    });
                     commit('setList', res);
                     resolve(res)
                 }).catch(() => {

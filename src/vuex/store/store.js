@@ -5,10 +5,11 @@ Vue.use(Vuex);
 
 const state = {
     token: null,
-    locale:'cn',
+    locale:'cn',//当前语言
     userName:'admin',
     password:'admin',
-    msg:''
+    msg:'',
+    pageHeight: document.documentElement.clientHeight>=750?document.documentElement.clientHeight:750 //全局的高度
 };
 const actions = {
     updateUser ({ commit, state },params) {
@@ -45,6 +46,9 @@ export default new Vuex.Store({
       },
       [`SET_CHANGELANGUAGE`](state, data) {
           state.locale = data;
+      },
+      ['SET_PAGEHEIGHT'](state,data){
+         state.pageHeight=data>=750?data:750 ;
       }
   },
   modules:vuexModules

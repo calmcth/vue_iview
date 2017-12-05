@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import iView from 'iview';
 import store from '../vuex/store/store'
 import Modeules from '../page/index';
 import asyncRouter from './asyncRouter';
@@ -12,13 +13,7 @@ Vue.use(VueRouter);
  */
 let routes=[
     {
-        path: '/layout',
-        name:'layout',
-        component: Modeules.LayoutController,
-        children:[]
-    },
-    {
-        path: '/login', name:'login', component: Modeules.LoginController,
+        path: '/login', name:'login', component: Modeules.LoginController
     },
     {
         path: '/error',
@@ -45,6 +40,19 @@ let routes=[
         ]
     }
 ];
+
+let layoutRouter={
+    path: '/layout',
+    name:'layout',
+    component: Modeules.LayoutController,
+    children:[
+        {
+            path:"/userInfoChange",
+            name:'userInfoChange',
+            component:Modeules.UserInfoChangeController
+        }
+    ]
+};
 /**
  * 根据权限匹配路由
  * @param {array} permission 权限列表（菜单列表）
@@ -52,7 +60,7 @@ let routes=[
  */
 function routerMatch(permission, asyncRouter){
     return new Promise((resolve) => {
-        const routers$ = routes[0];
+        const routers$ =layoutRouter;
         // 创建路由
         function createRouter(permission){
             permission.forEach((item) => {
@@ -78,22 +86,26 @@ function routerMatch(permission, asyncRouter){
 
 
 const router = new VueRouter({
-    mode: 'history',
+    //mode: 'history',
     routes: routes
 });
 /**跳转拦截**/
 router.beforeEach((to, from, next) => {
-    if(to.path!=='/login' && LocalStorage.get("SimUserInfo_")===null){
+    iView.LoadingBar.start();
+
+    if(LocalStorage.get("SimUserInfo_")===null && to.path!=='/login'){
+        LocalStorage.remove("SimUserInfo_");
         next('/login');
     }else{
         // 页面跳转前先判断是否存在权限列表，如果存在则直接跳转，如果没有则请求一次
         if (store.state.permission.list.length === 0) {
-            store.dispatch('permission/getPermission').then(res => {
+            store.dispatch('permission/getPermission').then(resItem => {
                 // 匹配并生成需要添加的路由对象
-                routerMatch(res, asyncRouter).then(res => {
+                routerMatch(resItem, asyncRouter).then(res => {
+                    routes[0]=res;
                     router.addRoutes(res);
                     if(to.path==="/"){
-                        next({path: '/tableList'});
+                        next({path: '/homeManage'});
                     }else {
                         next(to.path);
                     }
@@ -104,6 +116,10 @@ router.beforeEach((to, from, next) => {
         }else{
             // 如果跳转页面存在于路由中则进入，否则跳转到404
             // 因为可以通过改变url值进行访问，所以必须有该判断
+            if(to.path==="/"){
+                next({path: '/homeManage'});
+                return
+            }
             if(to.matched.length){
                 if(whiteList.indexOf(to.path) < 0){
 
@@ -113,7 +129,30 @@ router.beforeEach((to, from, next) => {
                 router.replace('/error/404')
             }
         }
+        next();
     }
     next();
+});
+
+router.afterEach(route => {
+    /**
+     * 初始化标签页导航
+     */
+    if(LocalStorage.get("pageOpenedList")!==null ){
+        store.state.app.pageOpenedList=JSON.parse(LocalStorage.get("pageOpenedList"));
+    }else{
+        LocalStorage.add("pageOpenedList",JSON.stringify(store.state.app.pageOpenedList))
+    }
+    /**
+     * 每次都请求都添加标签页，如果有就不添加，如果没有就添加
+     */
+    if(whiteList.indexOf(route.path) < 0 && route.path!=="/" && route.path.indexOf("error")<0){
+        store.dispatch('app/add_pageOpenedList',{
+            title:route.name,
+            path:route.path,
+            name:route.name
+        });
+    }
+    iView.LoadingBar.finish();
 });
 export default router;

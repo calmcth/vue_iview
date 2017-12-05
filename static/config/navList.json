@@ -1,13 +1,32 @@
 [
   {
-    "path":"/tableList",
-    "name":"列表",
+    "path":"/homeManage",
+    "icon":"android-apps",
+    "title":"控制台首页",
+    "name":"homeManage",
     "permission": ["edit","add"]
   },
   {
-    "name":"个人配置",
+    "title":"管理",
+    "name":"smsManage",
+    "icon":"android-textsms",
     "child":[
-      {"path":"/userInfo","name":"个人信息"}
+      {"path":"/smsManage/contacts","title":"通讯录","name":"contacts"},
+      {"path":"/smsManage/templateManage","title":"模板管理","name":"templateManage"},
+      {"path":"/smsManage/dataQuery","title":"数据查询","name":"dataQuery"},
+      {"path":"/smsManage/billManage","title":"账单管理","name":"billManage"},
+      {"path":"/smsManage/blackList","title":"黑名单","name":"blackList"}
+    ]
+  },
+  {
+    "title":"设置",
+    "name":"setting",
+    "icon":"android-options",
+    "child":[
+      {"path":"/setting/accountSetting","title":"账户设置","name":"accountSetting"},
+      {"path":"/setting/agentAccountManage","title":"子账号管理","name":"agentAccountManage"},
+      {"path":"/setting/interiorAccountManage","title":"内部账号管理","name":"interiorAccountManage"},
+      {"path":"/setting/systemMessages","title":"系统消息","name":"systemMessages"}
     ]
   }
 ]

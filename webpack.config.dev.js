@@ -45,7 +45,7 @@ var config = {
             {
                 test: /\.(js)?$/,
                 loader: 'babel-loader',
-                include: [path.resolve(__dirname, 'src')]
+                include: [path.resolve(__dirname, 'src'),path.resolve(__dirname,'node_modules/vue-echarts-v3/src')]
             },
             {
                 test: /\.vue$/,
@@ -99,7 +99,7 @@ var config = {
          */
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
-            title: 'vue ui组件',
+            title: 'sms-client',
             addLinkCss: ['/static/styles/iview.css'],
             template: './template/index.ejs',
             hash: true,    //为静态资源生成hash值

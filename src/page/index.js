@@ -8,9 +8,14 @@ const LoginController = () => import(/* webpackChunkName: "login" */ './login/Lo
  * @constructor
  */
 const LayoutController = () => import(/* webpackChunkName: "layout" */ './Layout/LayoutController.vue');
-
+/**
+ * 个人信息修改页
+ * @constructor
+ */
+const UserInfoChangeController = () => import(/* webpackChunkName: "userInfo" */ './home/UserInfoChangeController.vue');
 
 export default {
     LayoutController,
-    LoginController
+    LoginController,
+    UserInfoChangeController
 }

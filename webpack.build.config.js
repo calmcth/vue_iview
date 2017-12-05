@@ -50,7 +50,7 @@ var config = {
             {
                 test: /\.(js)?$/,
                 loader: 'babel-loader',
-                include: [pathToSrc]
+                include: [path.resolve(__dirname, 'src'),path.resolve(__dirname, 'node_modules/iview'),path.resolve(__dirname,'node_modules/vue-echarts-v3/src')]
             },
             {
                 test: /\.vue$/,
@@ -110,10 +110,19 @@ var config = {
             filename: "common.js"
         }),
         new HtmlWebpackPlugin({
-            title: 'vue ui组件',
+            title: 'sms-client',
             addLinkCss: ['/static/styles/iview.css'],
             template: './template/index.build.ejs',//本地模板文件的位置，支持加载器(如handlebars、ejs、undersore、html等)
             hash: true,    //为静态资源生成hash值
+            inject: true,
+            minify: {
+                removeComments: true,
+                collapseWhitespace: true,
+                removeAttributeQuotes: true
+            },
+            chunks: ['common', 'app'],
+            // necessary to consistently work with multiple chunks via CommonsChunkPlugin
+            chunksSortMode: 'dependency'
         })
     ]
 };

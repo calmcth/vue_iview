@@ -8,25 +8,42 @@
 
 <script type="text/babel">
     import Vue from 'vue';
+    import {
+        mapGetters,
+        mapState,
+        mapActions,
+        mapMutations
+    } from 'vuex';
   export default {
     name:'App',
     data() {
       return {
         transitionName: 'fade',
-        fullHeight: document.documentElement.clientHeight
+        fullHeight:document.documentElement.clientHeight
       }
+    },
+    computed:{
+
     },
     methods: {
         handleResize (event) {
-            this.fullHeight = document.documentElement.clientHeight
+            this.fullHeight=document.documentElement.clientHeight;
+            this.$store.commit('SET_PAGEHEIGHT',document.documentElement.clientHeight);
         }
     },
     mounted() {
+        window.addEventListener('resize', this.handleResize);
+    },
+    destroyed(){
+        window.removeEventListener('click', this.handleResize);
     },
     created(){
-        if(this.$store.state.locale!=="cn"){
+/*        if(this.$store.state.locale!=="cn"){
             this.$store.dispatch('changeLanguage','cn');
-        }
+        }*/
+        /**
+         * 根据stroe里面的设置初始化语言
+         */
         Vue.config.lang = this.$store.state.locale;
         //this.$i18n.locale=this.$store.state.locale;
         //window.addEventListener('resize', this.handleResize);

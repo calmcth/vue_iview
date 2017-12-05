@@ -1,0 +1,17 @@
+module.exports={
+    homeManage:'控制台首页',
+    smsManage:"管理",
+    internationalSmsManage:"国际管理",
+    setting:"设置",
+    contacts:"通讯录",
+    templateManage:"模板管理",
+    dataQuery:"数据查询",
+    billManage:"账单管理",
+    blackList:"黑名单",
+    accountSetting:"账户设置",
+    agentAccountManage:"代理子账号管理",
+    interiorAccountManage:"内部账号管理",
+    sensitiveWord:"敏感词管理",
+    systemMessages:"系统消息",
+    userInfoChange:"修改账户"
+};

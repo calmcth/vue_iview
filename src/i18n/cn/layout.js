@@ -1,0 +1,15 @@
+module.exports={
+    changePassword:"修改密码",
+    userInfoChange:"修改账户",
+    logOut:"退出登录",
+    tagSelect:"标签选项",
+    closeAll:"关闭所有",
+    closeOthers:"关闭其他",
+    newPassword:"新密码",
+    oldPassword:"旧密码",
+    checkPassword:"确认密码",
+    checkNewPasswordEmpty:"请输入新密码",
+    checkOldPasswordEmpty:"原密码不能为空",
+    checkPasswordEmpty:"请再次输入新密码",
+    confirmTowPassword:"两次输入的密码不一致"
+};

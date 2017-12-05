@@ -54,6 +54,7 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "classnames": "^2.2.5",
     "css-loader": "^0.26.4",
+    "echarts": "^3.8.5",
     "extract-text-webpack-plugin": "^2.1.0",
     "iview": "^2.7.2",
     "less": "^2.7.2",
@@ -63,9 +64,10 @@
     "superagent-bluebird-promise": "^4.2.0",
     "vue-class-component": "^4.3.0",
     "vue-directive-touch": "^1.0.7",
+    "vue-echarts-v3": "^1.0.15",
+    "vue-i18n": "^5.0.3",
     "vue-template-compiler": "^2.2.6",
     "vuex": "^2.2.1",
-    "vue-i18n": "^5.0.3",
     "vuex-class": "^0.1.3"
   }
 }
